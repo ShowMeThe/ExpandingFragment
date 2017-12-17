@@ -49,7 +49,7 @@ public abstract class ExpandingFragment extends android.support.v4.app.Fragment{
         front = view.findViewById(R.id.front);
 
 
-
+        //前界面动画
         front.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +72,7 @@ public abstract class ExpandingFragment extends android.support.v4.app.Fragment{
                 isClosed = false;
             }
         });
-
+        //后界面动画
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

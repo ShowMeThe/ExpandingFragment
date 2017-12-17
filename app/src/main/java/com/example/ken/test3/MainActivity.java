@@ -33,18 +33,21 @@ public class MainActivity extends AppCompatActivity {
         manager.getDefaultDisplay().getMetrics(outMetrics);
         int width = outMetrics.widthPixels;
 
+        //添加fragment到List
         fragmentList.add(fragment);
         fragmentList.add(fragment2);
         fragmentList.add(fragment3);
+
         viewPager = findViewById(R.id.viewPage);
         adapter = new FragmentAdapter(getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(adapter);
 
         viewPager.setPageTransformer(true, new ExpandingViewPagerTransformer());
-
+        //设置page的间距，ViewPage设置 android:clipChildren="false"
         viewPager.setPageMargin(-width/2);
         viewPager.setOffscreenPageLimit(3);
 
+        //监听操作
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
