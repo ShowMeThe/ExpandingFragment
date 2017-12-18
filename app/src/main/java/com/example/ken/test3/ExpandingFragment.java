@@ -90,9 +90,9 @@ public abstract class ExpandingFragment extends android.support.v4.app.Fragment{
         });
     }
 
-    protected abstract Fragment getFragmentTop();
+    public abstract Fragment getFragmentTop();
 
-    protected abstract Fragment getFragmentBottom();
+    public abstract Fragment getFragmentBottom();
 
     public  Boolean getClosed() {
         return isClosed;

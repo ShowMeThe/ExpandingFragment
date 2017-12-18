@@ -13,25 +13,33 @@ import android.view.ViewGroup;
 
 public class MyFragment extends ExpandingFragment {
 
+
     public static MyFragment newInstance() {
         return new MyFragment();
     }
 
     @Override
-    protected Fragment getFragmentTop() {
+    public Fragment getFragmentTop() {
         return Fragment1Top.newInstance();
     }
 
     @Override
-    protected Fragment getFragmentBottom() {
+    public Fragment getFragmentBottom() {
         return Fragment1Bottom.newInstance();
     }
 
 
-    @SuppressLint("ValidFragment")
     public static class Fragment1Top extends Fragment{
+        public static volatile Fragment1Top top = null;
         public static Fragment1Top newInstance() {
-            return new Fragment1Top();
+            if(top == null){
+                synchronized (Fragment1Top.class){
+                    if(top == null){
+                        top = new Fragment1Top();
+                    }
+                }
+            }
+            return top;
         }
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,10 +47,17 @@ public class MyFragment extends ExpandingFragment {
         }
     }
 
-    @SuppressLint("ValidFragment")
     public static class Fragment1Bottom extends Fragment{
-        public static Fragment1Bottom newInstance() {
-            return new Fragment1Bottom();
+        public  static volatile Fragment1Bottom bottom = null;
+        public  static Fragment1Bottom newInstance() {
+            if(bottom == null){
+                synchronized (Fragment1Bottom.class){
+                    if(bottom == null){
+                        bottom = new Fragment1Bottom();
+                    }
+                }
+            }
+            return bottom;
         }
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
